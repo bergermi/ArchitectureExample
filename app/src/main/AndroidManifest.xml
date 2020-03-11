@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".AddEditCategoryActivity"
+            android:parentActivityName=".CategoryActivity" />
+        <activity
+            android:name=".CategoryActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".AddEditNoteActivity"
             android:parentActivityName=".MainActivity" />
         <activity

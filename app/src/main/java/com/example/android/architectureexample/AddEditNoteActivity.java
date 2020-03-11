@@ -14,13 +14,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class AddEditNoteActivity extends AppCompatActivity {
     public static final String EXTRA_TITLE =
-            "com.example.android.architectureexample.EXTRA_TITLE";
+            "com.example.android.architectureexample.note.EXTRA_TITLE";
     public static final String EXTRA_DESCRIPTION =
-            "com.example.android.architectureexample.EXTRA_DESCRIPTION";
+            "com.example.android.architectureexample.note.EXTRA_DESCRIPTION";
     public static final String EXTRA_PRIORITY =
-            "com.example.android.architectureexample.EXTRA_PRIORITY";
+            "com.example.android.architectureexample.note.EXTRA_PRIORITY";
     public static final String EXTRA_ID =
-            "com.example.android.architectureexample.EXTRA_ID";
+            "com.example.android.architectureexample.note.EXTRA_ID";
 
     private EditText editTextTitle;
     private EditText editTextDescription;

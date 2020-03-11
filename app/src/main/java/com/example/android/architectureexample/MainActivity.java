@@ -22,6 +22,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
     public static final int ADD_NOTE_REQUEST = 1;
     public static final int EDIT_NOTE_REQUEST = 2;
     private NoteViewModel noteViewModel;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = findViewById(R.id.note_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
@@ -131,6 +132,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.delete_all_notes:
                 noteViewModel.deleteAllNotes();
                 Toast.makeText(this, "All notes deleted", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.edit_categories:
+                startActivity(new Intent(this, CategoryActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

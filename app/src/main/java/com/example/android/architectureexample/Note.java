@@ -3,10 +3,15 @@ package com.example.android.architectureexample;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity(tableName = "note_table")
+@Getter
 public class Note {
 
     @PrimaryKey(autoGenerate = true)
+    @Setter
     private int id;
 
     private String title;
@@ -20,26 +25,5 @@ public class Note {
         this.description = description;
         this.priority = priority;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public int getPriority() {
-        return priority;
-    }
-
 
 }
