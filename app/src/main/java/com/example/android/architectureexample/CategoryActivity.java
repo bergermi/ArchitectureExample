@@ -2,13 +2,11 @@ package com.example.android.architectureexample;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,15 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.List;
-
 import static com.example.android.architectureexample.AddEditCategoryActivity.EXTRA_ID;
 import static com.example.android.architectureexample.AddEditCategoryActivity.EXTRA_NAME;
 
 public class CategoryActivity extends AppCompatActivity {
 
     private static final int ADD_CATEGORY_REQUEST = 1;
-    public static final int EDIT_CATEGORY_REQUEST = 2;
+    private static final int EDIT_CATEGORY_REQUEST = 2;
     private CategoryViewModel categoryViewModel;
 
     @Override
@@ -33,12 +29,9 @@ public class CategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_category);
 
         FloatingActionButton buttonAddCategory = findViewById(R.id.button_add_category);
-        buttonAddCategory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CategoryActivity.this, AddEditCategoryActivity.class);
-                startActivityForResult(intent, ADD_CATEGORY_REQUEST);
-            }
+        buttonAddCategory.setOnClickListener(v -> {
+            Intent intent = new Intent(CategoryActivity.this, AddEditCategoryActivity.class);
+            startActivityForResult(intent, ADD_CATEGORY_REQUEST);
         });
 
         RecyclerView recyclerView = findViewById(R.id.category_recycler_view);
@@ -49,12 +42,7 @@ public class CategoryActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         categoryViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication()).create(CategoryViewModel.class);
-        categoryViewModel.getAllCategories().observe(this, new Observer<List<Category>>() {
-            @Override
-            public void onChanged(List<Category> categories) {
-                adapter.submitList(categories);
-            }
-        });
+        categoryViewModel.getAllCategories().observe(this, adapter::submitList);
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -70,20 +58,19 @@ public class CategoryActivity extends AppCompatActivity {
             }
         }).attachToRecyclerView(recyclerView);
 
-        adapter.setOnItemClickListener(new CategoryAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Category category) {
-                Intent intent = new Intent(CategoryActivity.this, AddEditCategoryActivity.class);
-                intent.putExtra(EXTRA_ID, category.getId());
-                intent.putExtra(EXTRA_NAME, category.getName());
-                startActivityForResult(intent, EDIT_CATEGORY_REQUEST);
-            }
+        adapter.setOnItemClickListener(category -> {
+            Intent intent = new Intent(CategoryActivity.this, AddEditCategoryActivity.class);
+            intent.putExtra(EXTRA_ID, category.getId());
+            intent.putExtra(EXTRA_NAME, category.getName());
+            startActivityForResult(intent, EDIT_CATEGORY_REQUEST);
         });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if (data == null) return;
 
         if (requestCode == ADD_CATEGORY_REQUEST && resultCode == RESULT_OK) {
             String name = data.getStringExtra(AddEditCategoryActivity.EXTRA_NAME);
@@ -108,7 +95,7 @@ public class CategoryActivity extends AppCompatActivity {
 
             Toast.makeText(this, "Category updated", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "Category not saves", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Category not saved", Toast.LENGTH_SHORT).show();
         }
 
     }

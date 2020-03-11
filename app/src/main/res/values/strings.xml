@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Architecture Example</string>
+    <string name="note_description">Description</string>
+    <string name="note_priority">Priority:</string>
+    <string name="note_title">Title</string>
+    <string name="category_hint_name">Name</string>
+    <string name="title_save">Save</string>
+    <string name="category_name">Name</string>
+    <string name="menu_item_delete_all_notes">Delete all notes</string>
+    <string name="menu_item_edit_categories">Edit categories</string>
+    <string name="note_item_priority">1</string>
+    <string name="note_item_title">Title</string>
+    <string name="note_item_description">Description</string>
 </resources>
