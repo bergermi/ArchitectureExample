@@ -1,4 +1,4 @@
-package com.example.android.architectureexample;
+package com.example.android.architectureexample.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +10,13 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.android.architectureexample.entity.Category;
+import com.example.android.architectureexample.R;
+
 public class CategoryAdapter extends ListAdapter<Category, CategoryAdapter.CategoryHolder> {
     private OnItemClickListener listener;
 
-    protected CategoryAdapter() {
+    public CategoryAdapter() {
         super(DIFF_CALLBACK);
     }
 

@@ -1,10 +1,15 @@
-package com.example.android.architectureexample;
+package com.example.android.architectureexample.viewmodel;
 
 import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
+import com.example.android.architectureexample.Event;
+import com.example.android.architectureexample.entity.Note;
+import com.example.android.architectureexample.repository.NoteRepository;
 
 import java.util.List;
 
@@ -37,4 +42,5 @@ public class NoteViewModel extends AndroidViewModel {
     public LiveData<List<Note>> getAllNotes() {
         return allNotes;
     }
+
 }

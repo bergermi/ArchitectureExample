@@ -1,9 +1,13 @@
-package com.example.android.architectureexample;
+package com.example.android.architectureexample.repository;
 
 import android.app.Application;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
+
+import com.example.android.architectureexample.db.NoteDatabase;
+import com.example.android.architectureexample.dao.CategoryDao;
+import com.example.android.architectureexample.entity.Category;
 
 import java.util.List;
 

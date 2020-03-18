@@ -1,4 +1,4 @@
-package com.example.android.architectureexample;
+package com.example.android.architectureexample.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,11 +10,19 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.android.architectureexample.Event;
+import com.example.android.architectureexample.R;
+import com.example.android.architectureexample.adapter.NoteAdapter;
+import com.example.android.architectureexample.databinding.ActivityMainBinding;
+import com.example.android.architectureexample.entity.Note;
+import com.example.android.architectureexample.viewmodel.NoteViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +34,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        // Data binding - Inflate activity and attach binding
+        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
+        // Data binding - Set 'viewmodel' variable
+        binding.setViewmodel(ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication()).create(NoteViewModel.class));
+
+//        // Attach a observer to the LiveEvent data in the ViewModel
+//        binding.getViewmodel().getShowAddEditNoteActivityEvent().observe(this, new Observer<Event<Boolean>>() {
+//            @Override
+//            public void onChanged(Event<Boolean> voidEvent) {
+//                if (voidEvent.getContentIfNotHandled() != null) {
+//                    Intent intent = new Intent(MainActivity.this, AddEditNoteActivity.class);
+//                    startActivityForResult(intent, ADD_NOTE_REQUEST);
+//                }
+//            }
+//        });
 
         FloatingActionButton buttonAddNote = findViewById(R.id.button_add_note);
         buttonAddNote.setOnClickListener(v -> {
@@ -79,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             String description = data.getStringExtra(AddEditNoteActivity.EXTRA_DESCRIPTION);
             int priority = data.getIntExtra(AddEditNoteActivity.EXTRA_PRIORITY, 1);
 
-            Note note = new Note(title, description, priority);
+            Note note = new Note(title, description, priority, null);
             noteViewModel.insert(note);
 
             Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();
@@ -95,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
             String description = data.getStringExtra(AddEditNoteActivity.EXTRA_DESCRIPTION);
             int priority = data.getIntExtra(AddEditNoteActivity.EXTRA_PRIORITY, 1);
 
-            Note note = new Note(title, description, priority);
+            Note note = new Note(title, description, priority, null);
             note.setId(id);
             noteViewModel.update(note);
 

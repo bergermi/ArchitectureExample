@@ -1,4 +1,4 @@
-package com.example.android.architectureexample;
+package com.example.android.architectureexample.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.android.architectureexample.R;
 
 public class AddEditNoteActivity extends AppCompatActivity {
     public static final String EXTRA_TITLE =

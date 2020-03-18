@@ -11,16 +11,16 @@
         android:theme="@style/AppTheme"
         android:fullBackupContent="@xml/backup_descriptor">
         <activity
-            android:name=".AddEditCategoryActivity"
-            android:parentActivityName=".CategoryActivity" />
+            android:name=".view.AddEditCategoryActivity"
+            android:parentActivityName=".view.CategoryActivity" />
         <activity
-            android:name=".CategoryActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name=".view.CategoryActivity"
+            android:parentActivityName=".view.MainActivity" />
         <activity
-            android:name=".AddEditNoteActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name=".view.AddEditNoteActivity"
+            android:parentActivityName=".view.MainActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

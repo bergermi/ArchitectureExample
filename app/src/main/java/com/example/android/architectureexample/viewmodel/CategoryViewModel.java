@@ -1,10 +1,13 @@
-package com.example.android.architectureexample;
+package com.example.android.architectureexample.viewmodel;
 
 import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+
+import com.example.android.architectureexample.entity.Category;
+import com.example.android.architectureexample.repository.CategoryRepository;
 
 import java.util.List;
 

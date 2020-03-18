@@ -1,4 +1,4 @@
-package com.example.android.architectureexample;
+package com.example.android.architectureexample.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +10,8 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Node;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.android.architectureexample.entity.Note;
+import com.example.android.architectureexample.R;
 
 public class NoteAdapter extends ListAdapter<Note, NoteAdapter.NoteHolder> {
     private OnItemClickListener listener;

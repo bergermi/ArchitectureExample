@@ -1,4 +1,4 @@
-package com.example.android.architectureexample;
+package com.example.android.architectureexample.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,10 +12,14 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.android.architectureexample.entity.Category;
+import com.example.android.architectureexample.viewmodel.CategoryViewModel;
+import com.example.android.architectureexample.R;
+import com.example.android.architectureexample.adapter.CategoryAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import static com.example.android.architectureexample.AddEditCategoryActivity.EXTRA_ID;
-import static com.example.android.architectureexample.AddEditCategoryActivity.EXTRA_NAME;
+import static com.example.android.architectureexample.view.AddEditCategoryActivity.EXTRA_ID;
+import static com.example.android.architectureexample.view.AddEditCategoryActivity.EXTRA_NAME;
 
 public class CategoryActivity extends AppCompatActivity {
 

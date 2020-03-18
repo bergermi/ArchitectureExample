@@ -1,9 +1,13 @@
-package com.example.android.architectureexample;
+package com.example.android.architectureexample.repository;
 
 import android.app.Application;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
+
+import com.example.android.architectureexample.db.NoteDatabase;
+import com.example.android.architectureexample.dao.NoteDao;
+import com.example.android.architectureexample.entity.Note;
 
 import java.util.List;
 
@@ -14,7 +18,7 @@ public class NoteRepository {
 
     public NoteRepository(Application application) {
         NoteDatabase database = NoteDatabase.getInstance(application);
-        noteDao = database.noteDao();
+        noteDao = database.getNoteDao();
         allNotes = noteDao.getAllNotes();
     }
 
